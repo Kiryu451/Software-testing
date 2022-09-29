@@ -1,4 +1,5 @@
 from tkinter import *
+import math
 
 
 class Main(Frame):
@@ -12,11 +13,12 @@ class Main(Frame):
         self.lbl.place(x=10, y=50)
 
         btns = [
-            "C", "DEL", "X^2", "/",
-            "1", "2", "3", "*",
-            "4", "5", "6", "-",
-            "7", "8", "9", "+",
-            "(", "0", ")", "="
+            "C", "DEL", "X^2", "√",
+            "1", "2", "3", "/",
+            "4", "5", "6", "*",
+            "7", "8", "9", "-",
+            "(", "0", ")", "+",
+            "log", "sin", "cos", "="
         ]
 
         x = 10
@@ -40,6 +42,14 @@ class Main(Frame):
             self.formula = self.formula[0:-1]
         elif operation == "X^2":
             self.formula = str((eval(self.formula))**2)
+        elif operation == "√":
+            self.formula = str((eval(self.formula))**0.5)
+        elif operation == "log":
+            self.formula = str(math.log(eval(self.formula)))
+        elif operation == "sin":
+            self.formula = str(math.sin(eval(self.formula)))
+        elif operation == "cos":
+            self.formula = str(math.cos(eval(self.formula)))
         elif operation == "=":
             self.formula = str(eval(self.formula))
         else:
@@ -57,9 +67,8 @@ class Main(Frame):
 if __name__ == '__main__':
     root = Tk()
     root["bg"] = "#000"
-    root.geometry("485x550+200+200")
+    root.geometry("485x630+200+200")
     root.title("Калькулятор")
     root.resizable(False, False)
     app = Main(root)
-    app.pack()
     root.mainloop()
